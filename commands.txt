@@ -1,0 +1,42 @@
+Level 1
+
+rails new PopmenuInterview --api
+
+rails g model Menu name:string
+
+rails g model MenuItem name:string price:decimal menu:references
+
+rake db:create db:migrate
+
+rake db:migrate RAILS_ENV=test
+
+rails g controller Menus
+
+rails g controller MenuItems
+
+bundle exec rails g rspec:install
+
+bundle exec rspec
+
+################################
+
+Level 2
+
+rails g controller Restaurants
+
+rails g model Restaurant name:string
+
+rails g migration AddRestaurantToMenus restaurant:references
+
+rails g migration CreateJoinTableMenuMenuItems menu menu_item
+
+rake db:migrate
+
+rake db:migrate RAILS_ENV=test
+
+bundle exec rspec
+
+################################
+
+--find routes with resource filter--
+rails routes -g 'filter'
