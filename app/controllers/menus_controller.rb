@@ -1,10 +1,10 @@
 class MenusController < ApplicationController
-  before_action :set_menu, only: [ :show, :update, :destroy, :menu_items, :destroy_menu_item ]
-  before_action :set_menu_item, only: [ :destroy_menu_item ]
+  before_action :set_menu, only: [ :show, :update, :destroy, :menu_items ]
 
   def index
-    @menus = Menu.all
-    render json: @menus
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+    head :not_found unless @restaurant
+    render json: @restaurant.menus
   end
 
   def show
@@ -12,7 +12,9 @@ class MenusController < ApplicationController
   end
 
   def create
-    @menu = Menu.new(menu_params)
+    @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+    head :not_found unless @restaurant
+    @menu = @restaurant.menus.new(menu_params)
     if @menu.save
       render json: @menu, status: :created
       return
@@ -37,24 +39,11 @@ class MenusController < ApplicationController
     render json: @menu.menu_items
   end
 
-  def destroy_menu_item
-    if @menu.menu_items.include?(@menu_item) && @menu.menu_items.delete(@menu_item)
-      head :ok
-      return
-    end
-    head :unprocessable_entity
-  end
-
   private
 
   def set_menu
     @menu = Menu.find_by(id: params[:id])
     head :not_found unless @menu
-  end
-
-  def set_menu_item
-    @menu_item = MenuItem.find_by(id: params[:menu_item_id])
-    head :not_found unless @menu_item
   end
 
   def menu_params

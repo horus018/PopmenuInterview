@@ -14,9 +14,9 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
       render json: @restaurant, status: :created
-    else
-      head :unprocessable_entity
+      return
     end
+    render json: @restaurant.errors, status: :unprocessable_entity
   end
 
   def update
@@ -24,7 +24,7 @@ class RestaurantsController < ApplicationController
       render json: @restaurant
       return
     end
-    head :unprocessable_entity
+    render json: @restaurant.errors, status: :unprocessable_entity
   end
 
   def destroy
@@ -41,6 +41,7 @@ class RestaurantsController < ApplicationController
   def set_restaurant
     @restaurant = Restaurant.find_by(id: params[:id])
     head :not_found unless @restaurant
+    nil if @restaurant  # Adicionei este return
   end
 
   def restaurant_params

@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
-  resources :restaurants do
-    resources :menus
-  end
+  get "routes", to: "routes#index"
 
-  resources :menus do
-    resources :menu_items, only: [ :index, :create ] do
-      delete "remove", action: :destroy_menu_item, on: :member
+  resources :restaurants do
+    resources :menus do
+      resources :menu_items
     end
   end
-
-  resources :menu_items, only: [ :show, :update, :destroy ]
 
   post "/import", to: "importations_v1#import"
 
