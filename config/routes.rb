@@ -11,5 +11,7 @@ Rails.application.routes.draw do
 
   resources :menu_items, only: [ :show, :update, :destroy ]
 
+  post "/import", to: "importations_v1#import"
+
   get "up" => "rails/health#show", as: :rails_health_check
 end

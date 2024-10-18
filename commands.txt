@@ -38,13 +38,23 @@ bundle exec rspec
 
 ################################
 
-Level 3
+Adjustments
 
 rails g model MenuItemMenu
 
 rails g migration RemoveMenuFromMenuItems
 
 rails g migration AddTimestampsToJoinTableMenuMenuItems
+
+################################
+
+Level 3
+
+rails g controller ImportationsV1
+
+mkdir app/services
+
+New-Item -ItemType File -Path app/services/import_service.rb
 
 ################################
 
