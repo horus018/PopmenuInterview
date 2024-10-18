@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe MenuItem, type: :model do
   let(:restaurant) { create(:restaurant) }
   let(:menu) { create(:menu, restaurant: restaurant) }
-  let(:menu_item) { build(:menu_item, menu: menu) }
+  let(:menu_item) { create(:menu_item) }
+
+  before do
+    menu.menu_items << menu_item # Associating menu_item with menu trhough the join table
+  end
 
   context 'Validations' do
     it 'Is valid' do
@@ -42,6 +46,10 @@ RSpec.describe MenuItem, type: :model do
 
     it 'Destroys associated menu items when menu is deleted' do
       expect { menu.destroy }.to change(MenuItem, :count).by(0)
+    end
+
+    it 'Association in database' do
+      expect(menu.menu_items.reload).to include(menu_item)
     end
   end
 end

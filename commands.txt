@@ -38,5 +38,15 @@ bundle exec rspec
 
 ################################
 
+Level 3
+
+rails g model MenuItemMenu
+
+rails g migration RemoveMenuFromMenuItems
+
+rails g migration AddTimestampsToJoinTableMenuMenuItems
+
+################################
+
 --find routes with resource filter--
 rails routes -g 'filter'
