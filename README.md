@@ -32,3 +32,8 @@ This project is intended to solve the levels of the interview challenge for Popm
   - Command: `bundle install`
 
 - **⚙️ All commands located in `commands.txt` file**
+
+## Observations
+
+- **Documentation for the JSON conversion tool**: You can find this at the root of the project in the file named `import_service_doc.md`.
+- **Project Commands**: All commands used in this project are documented in a file located at the root, named `commands.txt`.
