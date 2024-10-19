@@ -96,4 +96,4 @@ The service includes error handling for various exceptions:
 ## 🏁 Conclusion
 The ImportService provides a robust way to import restaurant data with extensive logging and error handling, making it easy to debug and understand the import process.
 
-For further assistance, please refer to the source code or contact the development team. Happy coding! 🎉
+For further assistance, please contact me the developer. Happy coding! 🎉
